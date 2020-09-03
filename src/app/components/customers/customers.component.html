@@ -1,0 +1,40 @@
+<mat-form-field class="search-field">
+    <mat-label>Search value from any column</mat-label>
+    <input matInput name="search" (keyup)="applyFilter($event.target.value)" type="text" [(ngModel)]="search.value">
+</mat-form-field>
+
+<mat-table class="lessons-table mat-elevation-z8" matSort [dataSource]="dataSource">
+
+    <ng-container matColumnDef="companyName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Company Name</mat-header-cell>
+        <mat-cell *matCellDef="let customer">{{customer.companyName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="contactName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Contact Name</mat-header-cell>
+        <mat-cell *matCellDef="let customer">{{customer.contactName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="contactTitle">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Contact Title</mat-header-cell>
+        <mat-cell *matCellDef="let customer">{{customer.contactTitle}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Phone</mat-header-cell>
+        <mat-cell *matCellDef="let customer">{{customer.phone}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+        <mat-cell *matCellDef="let customer">
+        	<a mat-stroked-button routerLink="/customer-details/{{customer.id}}">View</a>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+</mat-table>
+<mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>

@@ -1,0 +1,12 @@
+.search-field {
+	width: 97%;
+	margin: 20px;
+}
+.paginate {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.paginate button {
+	margin: 10px;
+}

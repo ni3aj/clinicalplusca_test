@@ -1,0 +1,12 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+section {
+  display: table;
+}
+.button-row {
+	display: table-cell;
+}
+.button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}

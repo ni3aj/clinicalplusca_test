@@ -1,0 +1,53 @@
+<mat-tab-group mat-align-tabs="center">
+  	<mat-tab label="Profile">  
+  		<mat-list role="list">
+		  	<mat-list-item role="listitem">companyName: {{data?.customer.companyName}}</mat-list-item>
+		  	<mat-divider></mat-divider>
+		  	<mat-list-item role="listitem">contactName: {{data?.customer.contactName}}</mat-list-item>
+		  	<mat-divider></mat-divider>
+			<mat-list-item role="listitem">contactTitle: {{data?.customer.contactTitle}}</mat-list-item>
+			<mat-divider></mat-divider>
+			<mat-list-item role="listitem">fax: {{data?.customer.fax}}</mat-list-item>
+			<mat-divider></mat-divider>
+			<mat-list-item role="listitem">phone: {{data?.customer.phone}}</mat-list-item>
+			<mat-divider></mat-divider>
+			<mat-list-item role="listitem">address: {{data?.customer.address}}</mat-list-item>
+			<mat-divider></mat-divider>
+			<mat-list-item role="listitem">city: {{data?.customer.city}}</mat-list-item>
+			<mat-divider></mat-divider>
+			<mat-list-item role="listitem">postalCode: {{data?.customer.postalCode}}</mat-list-item>
+		</mat-list>
+  	</mat-tab>
+  <mat-tab label="Orders">
+  		<h3 class="center middle" *ngIf="data?.customerOrders.length === 0">No orders yet</h3>
+  		<mat-list role="list" *ngIf="data?.customerOrders.length > 0">
+  			<div *ngFor="let item of data?.customerOrders">
+			  	<mat-accordion>
+				  <mat-expansion-panel (opened)="panelOpenState = true"
+				                       (closed)="panelOpenState = false">
+				    <mat-expansion-panel-header>
+				      <mat-panel-title>
+				        Shipping no: {{item.order.id}}
+				      </mat-panel-title>
+				    </mat-expansion-panel-header>
+				    <p>
+				    	customerId: {{item.order.customerId}} <br/>
+				    	shipCity: {{item.order.shipCity}} <br/>
+				    	shipCountry: {{item.order.shipCountry}} <br/>
+				    	shipName: {{item.order.shipName}} <br/>
+				    	shipPostalCode: {{item.order.shipPostalCode}}
+				    </p>
+				    <ul>
+				    	<li *ngFor="let i of item.orderDetails">
+					    	orderId: {{i.orderId}} <br/>
+					    	productId: {{i.productId}} <br/>
+					    	quantity: {{i.quantity}} <br/>
+					    	unitPrice: {{i.unitPrice}}
+					    </li>
+				    </ul>
+				  </mat-expansion-panel>
+				</mat-accordion>
+			 </div>
+		</mat-list>
+  </mat-tab>
+</mat-tab-group>

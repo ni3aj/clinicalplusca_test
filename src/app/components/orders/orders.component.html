@@ -1,0 +1,54 @@
+<mat-form-field class="search-field">
+    <mat-label>Search value from any column</mat-label>
+    <input matInput name="search" (keyup)="applyFilter($event.target.value)" type="text" [(ngModel)]="search.value">
+</mat-form-field>
+<mat-table class="lessons-table mat-elevation-z8" matSort [dataSource]="dataSource">
+
+    <ng-container matColumnDef="customerId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>customerId</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.customerId}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="shipCity">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>shipCity</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.shipCity}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="shipName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>shipName</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.shipName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="shipCountry">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>shipCountry</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.shipCountry}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+        <mat-cell *matCellDef="let data">
+        	<a mat-stroked-button routerLink="/order-details/{{data.id}}">Show order details</a>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+</mat-table>
+
+<div class="paginate">
+
+<button disabled="{{currentPage.getValue() < 2}}" (click)="changePage(currentPage.getValue() - 1)" color="primary" mat-raised-button>Prev</button>
+
+<button *ngIf="currentPage.getValue() > 3" (click)="changePage(currentPage.getValue() - 3)" mat-stroked-button color="primary">{{currentPage.getValue() - 3}}</button>
+
+<button *ngIf="currentPage.getValue() > 2" (click)="changePage(currentPage.getValue() - 2)" mat-stroked-button color="primary">{{currentPage.getValue() - 2}}</button>
+
+<button *ngIf="currentPage.getValue() > 1" (click)="changePage(currentPage.getValue() - 1)"mat-stroked-button color="primary">{{currentPage.getValue() - 1}}</button>
+
+<button mat-raised-button color="primary">{{currentPage.getValue()}}</button>
+
+<button (click)="changePage(currentPage.getValue() + 1)" color="primary" mat-raised-button>Next</button>
+
+</div>
